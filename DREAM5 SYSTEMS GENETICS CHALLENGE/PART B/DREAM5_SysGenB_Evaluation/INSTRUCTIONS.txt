@@ -1,0 +1,13 @@
+Extract zip file in root directory C:
+(or wherever you like, but then change the file locations in the script)
+
+The evaluation script in the R-language is in the directory: //DREAM5_Challenge3B_Script
+
+Put your predictions in "//DREAM5_Challenge3B_Script/Predictions"
+(modify the names in the script)
+
+Run the script
+
+Results can be found in "//DREAM5_Challenge3B_Script/Results"
+
+Further comments are given in the R-script
