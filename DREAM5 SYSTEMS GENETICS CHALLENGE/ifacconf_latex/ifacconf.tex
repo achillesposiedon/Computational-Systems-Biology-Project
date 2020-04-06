@@ -17,282 +17,86 @@
  
 \address[First]{Department of Mechanical Engineering, IIT Madras (e-mail: aaftaabv@gmail.com)}
 
+
+
 \end{frontmatter}
+
 %===============================================================================
 
-\section{First Report}
+\subsection{First Report}
 
+The DREAM5 Systems Genetics Challenge Part-B consists of 3 parts.In the First part, the problem is to predict the extent of disease phenotype existence based on the Genotype of a particular plant.There are 941 genotype variants in 200 plants (genotype variants represent either the presence or absence of a gene in each of the 200 plants).Hence, the training data for this problem consisted of a 200X941 boolean type matrix and the extent of disease presence in each plant is given as a seperate 200X2 matrix with each plant having 2 different phenotype values both representing the effect a particular pathogen(Phytophthora sojae).Hence we had 200 plants with each plant having 941 features which can be used to predict 2 different phenotype values.So the Machine Learning model took 941 features from each of the 200 plants and fitted a model(seperately) using these features to predict outcomes(phenotype1, phenotype2).
 
+The prediction of phenotype was to be done on a testing set that consisted of 30 plants with variations across 941 genes given.Machine Learning Models were trained on the training set and these models were used to then predict the phenotype values(real numbers) for the 30 plants in the test data set.
+The predicted phenotype value was compared with the given gold standard phenotype values using spearman correlation coefficient and p-value. 
 
-\section{Procedure for Paper Submission}
+Similarly in the second sub-challenge, the training data consisted of a real 200X28,395 matrix of gene expression values and a 200X2 real matrix representing phenotype values in each plant.And the prediction of phenotype had to be done only based on the given gene gene expression values in each plant. Again the models were fit on the training data and predicted on the test dataset that consisted of gene expression values of 28,395 genes in 30 different plants.The predicted phenotype value was compared with the given gold standard phenotype values using spearman correlation coefficient and p-value. 
+Here also we had 200 plants with each plant having 28,395 features that can be used to predict 2 different outcomes.So the Machine Learning model took 28,395 features from each of the 200 plants and fitted a model using these features to predict outcomes(phenotype1, phenotype2).
 
-Next we see a few subsections.
+Finally the score of each model was calculated as was done by the DREAM5 Systems Genetic Challenge i.e. sum of natural logarithms of p-values of spearman correlation between given gold standard phenotype values and predicted phenotype values. (There were two predictions in each subchallenge one corresponding to phenotype 1 and the other corressponding to phenotype2 )
 
-\subsection{Review Stage}
+The models used for the subchallenge1 include:Linear Regression, Lasso Regression, Decision Tree, Random Forest, SVM,AdaBoost,Bagging Regressor,Gradient Boosting Machine(GBM),Homogeneous Voting Regression(using Random Forest Models and GBM),Cat
+-Boost Regressor.
 
-For submission guidelines, follow instructions on paper submission
-system as well as the event website.
-
-Note that conferences impose strict page limits, so it will be better
-for you to prepare your initial submission in the camera ready layout
-so that you will have a good estimate for the paper
-length. Additionally, the effort required for final submission will be
-minimal.
-
-\subsection{Equations}
-
-Some words might be appropriate describing equation~(\ref{eq:sample}), if 
-we had but time and space enough. 
-
-\begin{equation} \label{eq:sample}
-{{\partial F}\over {\partial t}} = D{{\partial^2 F}\over {\partial x^2}}.
-\end{equation}
-
-See \cite{Abl:56}, \cite{AbTaRu:54}, \cite{Keo:58} and \cite{Pow:85}.
-
-\subsubsection{Example.} This equation goes far beyond the
-celebrated theorem ascribed to the great Pythagoras by his followers.
-
-\begin{thm}   % use the thm environment for theorems
-The square of the length of the hypotenuse of a right triangle equals
-the sum of the squares of the lengths of the other two sides.
-\end{thm}
-
-\begin{pf}    % and the pf environment for proofs
-The square of the length of the hypotenuse of a right triangle equals the sum of the squares 
-of the lengths of the other two sides.
-\end{pf}
-
-%% There are a number of predefined theorem-like environments in
-%% ifacconf.cls:
-%%
-%% \begin{thm} ... \end{thm}            % Theorem
-%% \begin{lem} ... \end{lem}            % Lemma
-%% \begin{claim} ... \end{claim}        % Claim
-%% \begin{conj} ... \end{conj}          % Conjecture
-%% \begin{cor} ... \end{cor}            % Corollary
-%% \begin{fact} ... \end{fact}          % Fact
-%% \begin{hypo} ... \end{hypo}          % Hypothesis
-%% \begin{prop} ... \end{prop}          % Proposition
-%% \begin{crit} ... \end{crit}          % Criterion
-
-Of course LaTeX manages equations through built-in macros. You may
-wish to use the \texttt{amstex} package for enhanced math
-capabilities.
-
-\subsection{Figures}
-
-To insert figures, use the \texttt{graphicx} package. Although other
-graphics packages can also be used, \texttt{graphicx} is simpler to
-use. See  Fig.~\ref{fig:bifurcation} for an example.
+The models used for the subchallenge2 include:Linear Regression, Lasso Regression, ElasticNet regression,Decision Tree, Random Forest, SVM,AdaBoost,Bagging Regressor,Gradient Boosting Machine(GBM),Homogeneous Voting Regression(using Random Forest Models and GBM).
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=8.4cm]{bifurcation}    % The printed column width is 8.4 cm.
-\caption{Bifurcation: Plot of local maxima of $x$ with damping $a$ decreasing} 
-\label{fig:bifurcation}
+\includegraphics[width=8.4cm]{leaderboard}    % The printed column width is 8.4 cm.
+\caption{DREAM5 SysGenB Challenge Leaderboard } 
+\label{fig:leaderboard}
 \end{center}
 \end{figure}
 
-Figures must be centered, and have a caption at the bottom. 
+From the above leaderboard, it can be seen that the best score in the challenge B1(i.e. inference of Phenotype only from Genotype data) is 1.33696, whereas my score for Linear Regression is 2.2044070348685127.
+Till this point of time, the given data was scaled using standard scaler method in Sklearn and was used to fit a model using various machine learning algorithms. The other ML algorithms that beat the then best score are Ridge Regression, Bagging Regression, GBM regression, Voting Regression using only GBM models, and Catboost Regressor.
 
-\subsection{Tables}
-Tables must be centered and have a caption above them, numbered with
-Arabic numerals. See table~\ref{tb:margins} for an example.
+I plan make further improvements to the model by using PCA(linear dimensionality reduction), Manifold Learning(Non-linear dimensionality reduction) etc.Right now the number of features is about 941 which might introduce curse of dimensionality to some models.Next step will be to analyse data using dimensionality reduction.
+
+The score was calculated by this procedure:
+
+Spearman correlation coefficient and P-value was found between the real values of phenotype1 and predicted values of phenotype1 and the same 2 values were found between real values of phenotype2 and predicted values of phenotype2.The score is -1*(natural logarithm of p-value of spearman correlation between phenotype1's real and predicted values + natural logarithm of p-value of spearman correlation between phenotype2's real and predicted values).
+
+For the subchallenge B2(i.e. prediction of phenotype based only expression values of 28,395 genes), the best score in the leaderboard is 5.65904. My decision tree regressor model had a score of 6.283454289075021.Other models that surpassed the best score on leaderboard include Random Forest, Gradient Boosting Machine(GBM), GBM voting regressor.
+
+The B2 challenge had an even larger feature space (28,395 features ) than B1 challenge hence we expect the models to perform even better on this data after linaer or non-linear dimensionality reduction is applied.
+
+The score was calculated by the same procedure as indicated above.
+The complete scores of each model on SysGenB1 and SysGenB2 is summarised in the below table. 
+
+The following table illustrates the Model vs problem statement information of used models.
 
 \begin{table}[hb]
 \begin{center}
-\caption{Margin settings}\label{tb:margins}
+\caption{Scores Table}\label{tb:margins}
 \begin{tabular}{cccc}
-Page & Top & Bottom & Left/Right \\\hline
-First & 3.5 & 2.5 & 1.5 \\
-Rest & 2.5 & 2.5 & 1.5 \\ \hline
+Model & B1 Score & B2 Score  \\\hline
+Linear Regression & 2.2044070348685127 & 1.4372172661318754  \\
+Ridge Regression & 2.1819492446231603 & 1.4371453159087157  \\
+Decision Tree Regression & 0.4965799903304826 & 6.283454289075021 \\ 
+Random Forest Regression & 0.45537125620964347 & 5.792798653297446  \\
+SVM Regression & 0.6627204323246874 & 1.7120837632245094  \\
+Adaboost Regression & 0.42658865020883785 & 1.5024139668918883  \\
+Bagging Regression & 1.7619184978612388 & 3.1444887594932824  \\
+GBM Regression & 1.6468578041050397 & 5.986443810068452  \\
+Random Forest Voting Regression & 0.528437716104597 & 3.939148750324295  \\
+GBM Voting Regression & 1.5982751592676547
+& 5.965925663149765  \\
+Catboost Regression & 1.428776661540361
+& nan  \\\hline
 \end{tabular}
 \end{center}
 \end{table}
 
-\subsection{Final Stage}
 
-Authors are expected to mind the margins diligently.  Papers need to
-be stamped with event data and paginated for inclusion in the
-proceedings. If your manuscript bleeds into margins, you will be
-required to resubmit and delay the proceedings preparation in the
-process.
+\subsection{Further Work}
 
-\subsubsection{Page margins.} See table~\ref{tb:margins} for the
-page margins specification. All dimensions are in \emph{centimeters}.
+One noteworthy point is while simple linear models worked very well in SysGenB1 they performed poorly in SysGenB2, similarliy the more complex models failed in SysGenB1 and succeeded in SysGenB2.This might indicate a more complex relation between Phenotype and Gene Expression as compared to Phenotype and Geneotype Variations.
+
+Final aim of the SysGenB challenge will be to try and explain the type of relation between Phenotype and Genotype and Gene expression(ie. maybe determine which particular genotype variant or Gene expression value is having a huge impact on Phenotype value.) based on the performance of different models on the data.
+
+The model building of SysGenB3(prediction of Phenotype based on both Genotype Variants and Gene expressions) is to be done along with Gene Network Inference(SysGenA).
 
 
-\subsection{PDF Creation}
-
-All fonts must be embedded/subsetted in the PDF file. Use one of the
-following tools to produce a good quality PDF file:
-
-\subsubsection{PDFLaTeX} is a special version of LaTeX by Han The
-Thanh which produces PDF output directly using Type-1 fonts instead of
-the standard \texttt{dvi} file. It accepts figures in JPEG, PNG, and PDF
-formats, but not PostScript. Encapsulated PostScript figures can be
-converted to PDF with the \texttt{epstopdf} tool or with Adobe Acrobat
-Distiller.
-
-\subsubsection{Generating PDF from PostScript} is the classical way of
-producing PDF files from LaTeX. The steps are:
-
-\begin{enumerate}
-  \item Produce a \texttt{dvi} file by running \texttt{latex} twice.
-  \item Produce a PostScript (\texttt{ps}) file with \texttt{dvips}.
-  \item Produce a PDF file with \texttt{ps2pdf} or Adobe Acrobat
-  Distiller.
-\end{enumerate}
-
-\subsection{Copyright Form}
-
-IFAC will put in place an electronic copyright transfer system in due
-course. Please \emph{do not} send copyright forms by mail or fax. More
-information on this will be made available on IFAC website.
-
-
-\section{Units}
-
-Use SI as primary units. Other units may be used as secondary units
-(in parentheses). This applies to papers in data storage. For example,
-write ``$15\,\mathrm{Gb}/\mathrm{cm}^2$ ($100\,\mathrm{Gb}/\mathrm{in}^2$)''. 
-An exception is when
-English units are used as identifiers in trade, such as ``3.5 in
-disk drive''. Avoid combining SI and other units, such as current in
-amperes and magnetic field in oersteds. This often leads to confusion
-because equations do not balance dimensionally. If you must use mixed
-units, clearly state the units for each quantity in an equation.  The
-SI unit for magnetic field strength $\mathbf{H}$ is $\mathrm{A}/\mathrm{m}$. However, if you wish to
-use units of $\mathrm{T}$, either refer to magnetic flux density $\mathbf{B}$ or
-magnetic field strength symbolized as $\mu_0\,\mathbf{H}$. Use the center dot to
-separate compound units, e.g., ``$\mathrm{A} \cdot \mathrm{m}^2$''.
-
-\section{Helpful Hints}
-
-\subsection{Figures and Tables}
-
-Figure axis labels are often a source of confusion. Use words rather
-than symbols. As an example, write the quantity ``Magnetization'', or
-``Magnetization M'', not just ``M''. Put units in parentheses. Do not
-label axes only with units.  For example, write ``Magnetization
-($\mathrm{A}/\mathrm{m}$)'' or ``Magnetization ($\mathrm{A} \mathrm{m}^{-1}$)'', not just
- ``$\mathrm{A}/\mathrm{m}$''. Do not
-label axes with a ratio of quantities and units. For example, write
-``Temperature ($\mathrm{K}$)'', not ``$\mbox{Temperature}/\mathrm{K}$''.
-
-Multipliers can be especially confusing. Write ``Magnetization
-($\mathrm{kA}/\mathrm{m}$)'' or ``Magnetization ($10^3 \mathrm{A}/\mathrm{m}$)''. Do not write
-``Magnetization $(\mathrm{A}/\mathrm{m}) \times 1000$'' because the reader would not know
-whether the axis label means $16000\,\mathrm{A}/\mathrm{m}$ or $0.016\,\mathrm{A}/\mathrm{m}$.
-
-\subsection{References}
-
-Use Harvard style references (see at the end of this document). With
-\LaTeX, you can process an external bibliography database 
-using \texttt{bibtex},\footnote{In this case you will also need the \texttt{ifacconf.bst}
-file, which is part of the \texttt{ifaconf} package.}
-or insert it directly into the reference section. Footnotes should be avoided as
-far as possible.  Please note that the references at the end of this
-document are in the preferred referencing style. Papers that have not
-been published should be cited as ``unpublished''.  Capitalize only the
-first word in a paper title, except for proper nouns and element
-symbols.
-
-\subsection{Abbreviations and Acronyms}
-
-Define abbreviations and acronyms the first time they are used in the
-text, even after they have already been defined in the
-abstract. Abbreviations such as IFAC, SI, ac, and dc do not have to be
-defined. Abbreviations that incorporate periods should not have
-spaces: write ``C.N.R.S.'', not ``C. N. R. S.'' Do not use abbreviations
-in the title unless they are unavoidable (for example, ``IFAC'' in the
-title of this article).
-
-\subsection{Equations}
-
-Number equations consecutively with equation numbers in parentheses
-flush with the right margin, as in (\ref{eq:sample}).  To make your equations more
-compact, you may use the solidus ($/$), the $\exp$ function, or
-appropriate exponents. Use parentheses to avoid ambiguities in
-denominators. Punctuate equations when they are part of a sentence, as
-in
-
-\begin{equation} \label{eq:sample2}
-\begin{array}{ll}
-\int_0^{r_2} & F (r, \varphi ) dr d\varphi = [\sigma r_2 / (2 \mu_0 )] \\
-& \cdot \int_0^{\inf} exp(-\lambda |z_j - z_i |) \lambda^{-1} J_1 (\lambda  r_2 ) J_0 (\lambda r_i ) d\lambda 
-\end{array}
-\end{equation}
-
-Be sure that the symbols in your equation have been defined before the
-equation appears or immediately following. Italicize symbols ($T$
-might refer to temperature, but T is the unit tesla). Refer to
-``(\ref{eq:sample})'', not ``Eq. (\ref{eq:sample})'' or ``equation
-(\ref{eq:sample})'', except at the beginning of a sentence: ``Equation
-(\ref{eq:sample}) is \ldots''.
-
-\subsection{Other Recommendations}
-
-Use one space after periods and colons. Hyphenate complex modifiers:
-``zero-field-cooled magnetization''. Avoid dangling participles, such
-as, ``Using (1), the potential was calculated'' (it is not clear who or
-what used (1)). Write instead: ``The potential was calculated by using
-(1)'', or ``Using (1), we calculated the potential''.
-
-A parenthetical statement at the end of a sentence is punctuated
-outside of the closing parenthesis (like this). (A parenthetical
-sentence is punctuated within the parentheses.) Avoid contractions;
-for example, write ``do not'' instead of ``don' t''. The serial comma
-is preferred: ``A, B, and C'' instead of ``A, B and C''.
-
-
-\section{Conclusion}
-
-A conclusion section is not required. Although a conclusion may review
-the main points of the paper, do not replicate the abstract as the
-conclusion. A conclusion might elaborate on the importance of the work
-or suggest applications and extensions.
-
-\begin{ack}
-Place acknowledgments here.
-\end{ack}
-
-\bibliography{ifacconf}             % bib file to produce the bibliography
-                                                     % with bibtex (preferred)
-                                                   
-%\begin{thebibliography}{xx}  % you can also add the bibliography by hand
-
-%\bibitem[Able(1956)]{Abl:56}
-%B.C. Able.
-%\newblock Nucleic acid content of microscope.
-%\newblock \emph{Nature}, 135:\penalty0 7--9, 1956.
-
-%\bibitem[Able et~al.(1954)Able, Tagg, and Rush]{AbTaRu:54}
-%B.C. Able, R.A. Tagg, and M.~Rush.
-%\newblock Enzyme-catalyzed cellular transanimations.
-%\newblock In A.F. Round, editor, \emph{Advances in Enzymology}, volume~2, pages
-%  125--247. Academic Press, New York, 3rd edition, 1954.
-
-%\bibitem[Keohane(1958)]{Keo:58}
-%R.~Keohane.
-%\newblock \emph{Power and Interdependence: World Politics in Transitions}.
-%\newblock Little, Brown \& Co., Boston, 1958.
-
-%\bibitem[Powers(1985)]{Pow:85}
-%T.~Powers.
-%\newblock Is there a way out?
-%\newblock \emph{Harpers}, pages 35--47, June 1985.
-
-%\bibitem[Soukhanov(1992)]{Heritage:92}
-%A.~H. Soukhanov, editor.
-%\newblock \emph{{The American Heritage. Dictionary of the American Language}}.
-%\newblock Houghton Mifflin Company, 1992.
-
-%\end{thebibliography}
-
-\appendix
-\section{A summary of Latin grammar}    % Each appendix must have a short title.
-\section{Some Latin vocabulary}              % Sections and subsections are supported  
-                                                                         % in the appendices.
+ 
 \end{document}
